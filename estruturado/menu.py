@@ -41,10 +41,6 @@ def iniciarLoja(lista_produtos, carrinho):
                 print("Obrigado por utilizar a loja! Saindo...")
                 break
 
-            case 0:
-                print("Obrigado por utilizar a loja! Saindo...")
-                break
-
             case _:
                 print("Opção inválida.")
             
