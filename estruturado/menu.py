@@ -1,8 +1,4 @@
-# --------------------------
-# MENU COM SWITCH (match-case)
-# --------------------------
-
-from estruturado.produtos import listarProdutos, alterarEstoque
+from estruturado.produtos import listarProdutos
 from estruturado.carrinho import adicionarProdutoCarrinho, removerProdutoCarrinho, calcularTotalCarrinho
 
 def menu_principal():
@@ -25,20 +21,16 @@ def menu_principal():
                 listarProdutos()
 
             case 2:
-                cod = int(input("Código: "))
-                adicionarProdutoCarrinho(cod)
+                pass
 
             case 3:
-                cod = int(input("Código: "))
-                removerProdutoCarrinho(cod)
+                pass
 
             case 4:
-                calcularTotalCarrinho()
+                pass
 
             case 5:
-                cod = int(input("Código: "))
-                qtd = int(input("Novo estoque: "))
-                alterarEstoque(cod, qtd)
+                pass
 
             case 0:
                 print("Saindo...")
