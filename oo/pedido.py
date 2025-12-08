@@ -1,32 +1,22 @@
-"""TRECHO OO: classe Pedido com relação 1..* com ItemPedido e relação com Cliente."""
 import random
 from datetime import datetime
 
 
 class Pedido:
-    """Representa um pedido: contém 1 ou mais itens, associado a um cliente, com código único."""
     
     def __init__(self, cliente, itens_carrinho, total):
-        """
-        Args:
-            cliente: instância de Cliente
-            itens_carrinho: lista de ItemCarrinho do carrinho
-            total: valor total do pedido (float)
-        """
         self._cliente = cliente
-        self._codigo = self._gerar_codigo()  # Número aleatório 6 dígitos
+        self._codigo = self._gerar_codigo()
         self._data = datetime.now()
-        self._itens = []  # Lista de ItemPedido (1..*)
+        self._itens = []
         self._total = total
         
-        # Converter itens do carrinho para itens do pedido
         for item_carrinho in itens_carrinho:
             item_pedido = ItemPedido(item_carrinho.produto, item_carrinho.quantidade)
             self._itens.append(item_pedido)
     
     @staticmethod
     def _gerar_codigo():
-        """Gera um código de pedido aleatório (6 dígitos)."""
         return random.randint(100000, 999999)
     
     @property
@@ -70,7 +60,6 @@ class Pedido:
 
 
 class ItemPedido:
-    """Representa um item dentro de um pedido (quantidade × produto)."""
     
     def __init__(self, produto, quantidade):
         self._produto = produto

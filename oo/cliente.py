@@ -1,5 +1,3 @@
-"""TRECHO OO: classe Cliente com encapsulamento (getters/setters)."""
-
 class Cliente:
     def __init__(self, nome, cpf, birth, cel, endereco):
         self._nome = nome
@@ -8,7 +6,6 @@ class Cliente:
         self._cel = cel
         self._endereco = endereco
 
-    # Propriedades (properties) para acesso simplificado
     @property
     def nome(self):
         return self._nome
@@ -29,7 +26,6 @@ class Cliente:
     def endereco(self):
         return self._endereco
 
-    # Getters tradicionais
     def get_nome(self):
         return self._nome
 

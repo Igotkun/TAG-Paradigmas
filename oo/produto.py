@@ -1,4 +1,3 @@
-"""TRECHO OO: classes Produto e subclasses — encapsulamento, herança e polimorfismo."""
 
 class Produto:
     def __init__(self, nome, preco, categoria, estoque):
@@ -40,7 +39,6 @@ class Produto:
         else:
             self._estoque = int(estoque)
 
-    # Properties para acesso simplificado
     @property
     def nome(self):
         return self._nome
@@ -57,8 +55,6 @@ class Produto:
     def estoque(self):
         return self._estoque
 
-
-    # Método polimórfico — por padrão retorna o preço base
     def calcularValorFinal(self):
         return self._preco
     

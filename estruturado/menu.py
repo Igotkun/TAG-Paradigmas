@@ -1,11 +1,7 @@
 from dados import criarCliente, lerClientes, alterarCliente, selecionar_cliente
 from estruturado.produtos import listarProdutos
-from estruturado.carrinho import adicionarProdutoCarrinho, removerProdutoCarrinho, calcularTotalCompra, mostraCarrinho
 from oo.pagamento import processarPagamento
 import os
-
-# TRECHO ESTRUTURADO: menus e fluxos procedurais. Aqui usamos `match` (equivalente a switch)
-
 
 def menu_lista(lista_produtos, carrinho):
     
@@ -16,37 +12,47 @@ def menu_lista(lista_produtos, carrinho):
         print("[1] Adicionar Produto ao Carrinho")
         print("[0] Sair")
         print("-" * 40)
-        opcao = int(input("Escolha: "))
+        opcao_raw = input("Escolha: ")
+        try:
+            opcao = int(opcao_raw)
+        except ValueError:
+            print("Entrada inválida. Digite um número.")
+            input("Pressione Enter para continuar...")
+            continue
 
         match opcao:
             case 1:
-                adicionarProdutoCarrinho(lista_produtos, carrinho)
-
+                carrinho.adicionarProdutoCarrinho(lista_produtos)
             case 0:
                 break
-
             case _:
                 print("Opção inválida.")
+                input("Pressione Enter para continuar...")
                 
 def menu_carrinho(carrinho, cliente):
     
     while True:
         os.system('cls')
         print("\n========== CARRINHO ==========")
-        mostraCarrinho(carrinho)
+        carrinho.mostraCarrinho()
         print("\n[1] Remover Produto do Carrinho") 
         print("[2] Finalizar Compra")
         print("[0] Voltar")
         print("-" * 40)
-        total = calcularTotalCompra(carrinho)
+        total = carrinho.calcularTotalCompra()
         print(f"\nTOTAL DA COMPRA: R${total:.2f}")
         
-        opcao = int(input("Escolha: "))
+        opcao_raw = input("Escolha: ")
+        try:
+            opcao = int(opcao_raw)
+        except ValueError:
+            print("Entrada inválida. Digite um número.")
+            input("Pressione Enter para continuar...")
+            continue
 
         match opcao:
             case 1:
-                removerProdutoCarrinho(carrinho)
-            
+                carrinho.removerProdutoCarrinho()
             case 2:
                 if cliente is None:
                     print("Selecione um cliente em 'Meu Perfil' antes de finalizar a compra.")
@@ -55,9 +61,9 @@ def menu_carrinho(carrinho, cliente):
                     processarPagamento(total, carrinho, cliente)
             case 0:
                 break
-
             case _:
                 print("Opção inválida.")
+                input("Pressione Enter para continuar...")
 
 def menu_perfil(cliente_atual):
 
@@ -78,7 +84,13 @@ def menu_perfil(cliente_atual):
         print("[0] Sair")
         print("-" * 40)
 
-        opcao = int(input("Escolha: "))
+        opcao_raw = input("Escolha: ")
+        try:
+            opcao = int(opcao_raw)
+        except ValueError:
+            print("Entrada inválida. Digite um número.")
+            input("Pressione Enter para continuar...")
+            continue
 
         match opcao:
             case 1:
@@ -95,13 +107,14 @@ def menu_perfil(cliente_atual):
                 break
             case _:
                 print("Opção inválida.")
+                input("Pressione Enter para continuar...")
     
     return cliente_atual
 
 
 def iniciarLoja(lista_produtos, carrinho):
 
-    cliente_atual = None  # TRECHO OO: Rastreia cliente selecionado para Pedido
+    cliente_atual = None
     
     while True:
         os.system('cls')
@@ -113,24 +126,27 @@ def iniciarLoja(lista_produtos, carrinho):
         print("[1] Ver Catálogo")
         print("[2] Meu Carrinho")
         print("[3] Meu Perfil") 
-        print("[0] Sair")
+        print("[0] Sair do Programa")
         print("-" * 40)
 
-        opcao = int(input("Escolha: "))
+        opcao_raw = input("Escolha: ")
+        try:
+            opcao = int(opcao_raw)
+        except ValueError:
+            print("Entrada inválida. Digite um número.")
+            input("Pressione Enter para continuar...")
+            continue
 
         match opcao:
             case 1:
                 menu_lista(lista_produtos, carrinho)
-
             case 2:
                 menu_carrinho(carrinho, cliente_atual)
-            
             case 3:
                 cliente_atual = menu_perfil(cliente_atual)
-
             case 0:
                 print("Obrigado por utilizar a loja! Saindo...")
                 break
-
             case _:
                 print("Opção inválida.")
+                input("Pressione Enter para continuar...")

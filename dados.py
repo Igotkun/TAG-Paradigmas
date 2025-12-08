@@ -1,9 +1,10 @@
 import json
 import os
 from oo.cliente import Cliente
+from oo.carrinho import Carrinho
 
-carrinho = [] # memória temporária
-lista_produtos = [] # memória temporária
+carrinho = Carrinho()
+lista_produtos = []
 
 
 def criarCliente():
@@ -13,8 +14,6 @@ def criarCliente():
     if not os.path.exists(ARQUIVO):
         with open(ARQUIVO, 'w', encoding='utf-8') as f:
             f.write("[]")
-
-    #Carregando dados existentes
 
     try:
         with open(ARQUIVO, 'r', encoding='utf-8') as f:
@@ -99,7 +98,6 @@ def alterarCliente():
         print(f"{i} - {c['nome']} ({c['cpf']})")
     print("----------------------------")
 
-    #Escolher cliente pelo indice
     try:
         indice = int(input("Digite o índice do cliente que deseja alterar:"))
         cliente = clientes[indice]
@@ -115,7 +113,6 @@ def alterarCliente():
     cel = input(f"Celular: [{cliente['cel']}]") or cliente['cel']
     endereco = input(f"Endereço: [{cliente['endereco']}]") or cliente['endereco']
 
-    #Update
     clienteUpdate = {
         "nome": nome,
         "cpf" : cpf,
@@ -152,7 +149,7 @@ def selecionar_cliente():
             print(f"Cliente {cliente.nome} selecionado com sucesso!")
             input("Pressione Enter para continuar...")
             return cliente
-    except:
+    except Exception:
         pass
     
     print("Seleção inválida.")

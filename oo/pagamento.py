@@ -1,13 +1,11 @@
 from abc import ABC, abstractmethod
 import os
 import json
-from datetime import datetime
-
-"""TRECHO OO: hierarquia de Pagamento com polimorfismo em processar_pagamento()."""
 
 from estruturado.produtos import salvar_estoque
 from dados import lista_produtos
 from oo.pedido import Pedido
+from funcional.funcoes_funcionais import aplicar_desconto, gerar_multiplicador
 
 
 class Pagamento(ABC):
@@ -16,11 +14,9 @@ class Pagamento(ABC):
 
     @abstractmethod
     def processar_pagamento(self):
-        """Executa a coleta de dados e confirma o pagamento (simulação)."""
         pass
 
     def ajustar_valor(self):
-        """Retorna o valor ajustado por taxas/descontos da forma de pagamento (por padrão sem alteração)."""
         return self.valor_total
 
 
@@ -38,10 +34,8 @@ class PagamentoCartao(Pagamento):
         return True
 
     def ajustar_valor(self):
-        # Cartão: acréscimo de 2.5% sobre o total (taxa de processamento)
-        taxa = 0.025
-        ajustado = round(self.valor_total * (1 + taxa), 2)
-        return ajustado
+        multiplicador_taxa = gerar_multiplicador(1.025)
+        return round(multiplicador_taxa(self.valor_total), 2)
 
 
 class PagamentoPix(Pagamento):
@@ -56,10 +50,7 @@ class PagamentoPix(Pagamento):
         return True
 
     def ajustar_valor(self):
-        # PIX: desconto de 10% quando pago via PIX
-        desconto = 0.10
-        ajustado = round(self.valor_total * (1 - desconto), 2)
-        return ajustado
+        return aplicar_desconto(self.valor_total, desconto_percent=10)
 
 
 class PagamentoBoleto(Pagamento):
@@ -73,10 +64,8 @@ class PagamentoBoleto(Pagamento):
         return True
 
     def ajustar_valor(self):
-        # Boleto: pequena taxa administrativa de 1%
-        taxa = 0.01
-        ajustado = round(self.valor_total * (1 + taxa), 2)
-        return ajustado
+        multiplicador_taxa = gerar_multiplicador(1.01)
+        return round(multiplicador_taxa(self.valor_total), 2)
 
 
 def processarPagamento(total, carrinho, cliente):
@@ -106,7 +95,6 @@ def processarPagamento(total, carrinho, cliente):
             print("Opção inválida!")
             return
     
-    # Exibe o total ajustado pela forma de pagamento (polimorfismo via ajustar_valor)
     total_ajustado = metodo.ajustar_valor()
     print(f"\nValor base: R${total:.2f}")
     if total_ajustado != total:
@@ -114,19 +102,17 @@ def processarPagamento(total, carrinho, cliente):
     else:
         print(f"Valor a pagar: R${total_ajustado:.2f}")
 
-    confirmar = input("Confirmar e prosseguir com o pagamento? [s/N]: ").strip().lower()
+    confirmar = input("\nConfirmar e prosseguir com o pagamento? [s/N]: ").strip().lower()
     if confirmar != 's':
         print("Pagamento cancelado pelo usuário.")
         return
 
-    # Chama o método polimórfico (simula coleta de dados e aprovação)
     aprovado = metodo.processar_pagamento()
 
     if aprovado:
         os.system('cls')
         print("\nCOMPRA FINALIZADA COM SUCESSO!")
         
-        # TRECHO OO: Cria Pedido e persiste (UML: Cliente 0..* Pedido)
         try:
             pedido = Pedido(cliente, carrinho.itens, total_ajustado)
             salvar_pedidos(pedido)
@@ -134,11 +120,9 @@ def processarPagamento(total, carrinho, cliente):
         except Exception as e:
             print(f"Aviso: não foi possível gerar o pedido ({e})")
         
-        # Atualiza persistência do estoque apenas quando a compra for finalizada
         try:
             salvar_estoque(lista_produtos)
         except Exception:
-            # salvamento não crítico — seguir mesmo se falhar
             pass
 
         carrinho.clear()
@@ -148,11 +132,9 @@ def processarPagamento(total, carrinho, cliente):
 
 
 def salvar_pedidos(pedido):
-    """TRECHO OO: Persiste Pedido em JSON (relação UML Cliente 0..* Pedido)."""
     arquivo = "pedidos.json"
     pedidos = []
     
-    # Carrega pedidos existentes
     if os.path.exists(arquivo):
         try:
             with open(arquivo, 'r', encoding='utf-8') as f:
@@ -160,7 +142,6 @@ def salvar_pedidos(pedido):
         except:
             pedidos = []
     
-    # Adiciona novo pedido
     novo_pedido = {
         "codigo": pedido.codigo,
         "cliente_cpf": pedido.cliente.cpf,
@@ -180,6 +161,5 @@ def salvar_pedidos(pedido):
     
     pedidos.append(novo_pedido)
     
-    # Salva no arquivo
     with open(arquivo, 'w', encoding='utf-8') as f:
         json.dump(pedidos, f, ensure_ascii=False, indent=2)

@@ -3,13 +3,13 @@
         "nome": "Notebook",
         "preco": 3500.0,
         "categoria": "Eletrônicos",
-        "estoque": 4
+        "estoque": 2
     },
     {
         "nome": "Leite",
         "preco": 6.5,
         "categoria": "Alimentos",
-        "estoque": 50
+        "estoque": 42
     },
     {
         "nome": "Ovos",
