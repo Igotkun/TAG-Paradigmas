@@ -18,3 +18,19 @@ def soma_recursiva(lista):
     if not lista:
         return 0
     return lista[0] + soma_recursiva(lista[1:])
+
+def confirma():
+    while True:
+        print("[1] Confirmar")
+        print("[0] Voltar")
+        print("-" * 40)
+        opcao = int(input("Escolha: "))
+        match opcao:
+            case 1:
+                return 1
+
+            case 0:
+                return 0
+
+            case _:
+                pass
