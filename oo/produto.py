@@ -3,7 +3,7 @@ class Produto:
         self._nome = nome
         self._preco = preco
         self._categoria = categoria
-        self.estoque = estoque
+        self._estoque = estoque
 
     def get_nome(self):
         return self._nome
@@ -30,13 +30,13 @@ class Produto:
         self._categoria = categoria
 
     def get_estoque(self):
-        return self.estoque
+        return self._estoque
 
-    def set_estoque(self, novo_estoque):
-        if novo_estoque >= 0:
-            self.estoque = novo_estoque
-        else:
+    def set_estoque(self, estoque):
+        if estoque < 0:
             print("Estoque não pode ser negativo")
+        else:
+            self._estoque = estoque
 
 
     # Método polimórfico

@@ -1,5 +1,5 @@
 from estruturado.menu import iniciarLoja
-from estruturado.dados import lista_produtos, carrinho
+from dados import lista_produtos, carrinho
 from estruturado.produtos import carregar_estoque
 
 if __name__ == "__main__":

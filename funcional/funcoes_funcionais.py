@@ -19,3 +19,19 @@ def soma_recursiva(lista):
 # Uso de map, filter e reduce
 def exemplo_map_filter_reduce(produtos):
     pass
+
+def confirma():
+    while True:
+        print("[1] Confirmar")
+        print("[0] Voltar")
+        print("-" * 40)
+        opcao = int(input("Escolha: "))
+        match opcao:
+            case 1:
+                return 1
+                
+            case 0:
+                return 0
+
+            case _:
+                print("Opção inválida.")

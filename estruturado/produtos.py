@@ -2,7 +2,7 @@
 # Também aqui ficam funções estruturadas
 
 from oo.produto import Produto
-from estruturado.dados import lista_produtos
+from dados import lista_produtos
 
 def carregar_estoque():
     
