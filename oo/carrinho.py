@@ -1,3 +1,6 @@
+"""TRECHO OO: implementação do carrinho usando encapsulamento e polimorfismo."""
+
+
 class ItemCarrinho:
     def __init__(self, produto, quantidade):
         self.produto = produto
@@ -7,7 +10,7 @@ class ItemCarrinho:
 class Carrinho:
     def __init__(self):
         self.itens = []
-    # TRECHO OO: implementação de métodos do carrinho usando encapsulamento e objetos
+    
     def adicionar(self, produto, quantidade):
         """Adiciona `quantidade` do `produto` ao carrinho, atualiza estoque.
 

@@ -52,29 +52,25 @@ def lerClientes():
 
     if not os.path.exists(ARQUIVO):
         print("Nenhum cliente cadastrado ainda!")
-        return
+        return []
 
     try:
         with open(ARQUIVO, 'r', encoding='utf-8') as f:
             clientes = json.load(f)
     except json.JSONDecodeError:
         print("Erro ao ler o arquivo JSON!")
-        return
+        return []
     
     if len(clientes) == 0:
         print("Nenhum cliente cadastrado.")
-        return
+        return []
     
+    os.system("cls")
     print("\n--- LISTA DE CLIENTES ---")
-    for i, c in enumerate(clientes):
-        cliente_obj= Cliente(
-            c['nome'], 
-            c['cpf'], 
-            c['birth'], 
-            c['cel'], 
-            c['endereco'])
-        print(f"{i} - {cliente_obj}")
+    for i, c in enumerate(clientes, 1):
+        print(f"[{i}] {c['nome']} - CPF: {c['cpf']}")
     print("-------------------------")
+    return clientes
     
 
 def alterarCliente():
@@ -97,6 +93,7 @@ def alterarCliente():
         print("Nenhum cliente cadastrado para alterar.")
         return
 
+    os.system("cls")
     print("\n--- CLIENTES CADASTRADOS ---")
     for i, c in enumerate(clientes):
         print(f"{i} - {c['nome']} ({c['cpf']})")
@@ -133,3 +130,31 @@ def alterarCliente():
         json.dump(clientes, f, indent=4, ensure_ascii=False)
 
     print("\nCliente alterado com sucesso!")
+
+
+def selecionar_cliente():
+    """TRECHO OO: Permite seleção de Cliente para compra (relação UML Cliente 0..* Pedido)."""
+    clientes = lerClientes()
+    if not clientes:
+        print("Nenhum cliente disponível.")
+        input("Pressione Enter para continuar...")
+        return None
+    
+    print("\nSelecione um cliente:")
+    for i, cliente_dict in enumerate(clientes, 1):
+        print(f"[{i}] {cliente_dict['nome']} - CPF: {cliente_dict['cpf']}")
+    
+    try:
+        idx = int(input("Escolha: ")) - 1
+        if 0 <= idx < len(clientes):
+            c = clientes[idx]
+            cliente = Cliente(c['nome'], c['cpf'], c['birth'], c['cel'], c['endereco'])
+            print(f"Cliente {cliente.nome} selecionado com sucesso!")
+            input("Pressione Enter para continuar...")
+            return cliente
+    except:
+        pass
+    
+    print("Seleção inválida.")
+    input("Pressione Enter para continuar...")
+    return None

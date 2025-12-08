@@ -1,0 +1,32 @@
+[
+    {
+        "nome": "Notebook",
+        "preco": 3500.0,
+        "categoria": "Eletrônicos",
+        "estoque": 4
+    },
+    {
+        "nome": "Leite",
+        "preco": 6.5,
+        "categoria": "Alimentos",
+        "estoque": 50
+    },
+    {
+        "nome": "Ovos",
+        "preco": 0.33,
+        "categoria": "Alimentos",
+        "estoque": 100
+    },
+    {
+        "nome": "O Senhor dos Anéis",
+        "preco": 59.99,
+        "categoria": "Livros",
+        "estoque": 15
+    },
+    {
+        "nome": "Fone de Ouvido",
+        "preco": 199.99,
+        "categoria": "Eletrônicos",
+        "estoque": 20
+    }
+]

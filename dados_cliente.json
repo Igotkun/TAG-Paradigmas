@@ -1,9 +1,23 @@
 [
     {
-        "nome": "jordan",
-        "cpf": "123123",
-        "birth": "11231",
-        "cel": "123",
-        "endereco": "123"
+        "nome": "Ana",
+        "cpf": "659.048.727-80",
+        "birth": "14/9/2003",
+        "cel": "21 98126-5432",
+        "endereco": "Rua das Flores, 123, Rio de Janeiro"
+    },
+    {
+        "nome": "Beatriz",
+        "cpf": "124.362.647-06",
+        "birth": "12/10/2002",
+        "cel": "21 99182-8971",
+        "endereco": "Rua Quatro, 92, Rio de Janeiro"
+    },
+    {
+        "nome": "Caio",
+        "cpf": "987.654.321-00",
+        "birth": "5/5/2001",
+        "cel": "21 91234-5678",
+        "endereco": "Avenida Central, 456, Rio de Janeiro"
     }
 ]

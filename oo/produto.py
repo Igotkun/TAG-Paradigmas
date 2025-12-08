@@ -1,9 +1,11 @@
+"""TRECHO OO: classes Produto e subclasses — encapsulamento, herança e polimorfismo."""
+
 class Produto:
     def __init__(self, nome, preco, categoria, estoque):
         self._nome = nome
-        self._preco = preco
+        self._preco = float(preco)
         self._categoria = categoria
-        self._estoque = estoque
+        self._estoque = int(estoque)
 
     def get_nome(self):
         return self._nome
@@ -36,49 +38,55 @@ class Produto:
         if estoque < 0:
             print("Estoque não pode ser negativo")
         else:
-            self._estoque = estoque
+            self._estoque = int(estoque)
+
+    # Properties para acesso simplificado
+    @property
+    def nome(self):
+        return self._nome
+
+    @property
+    def preco(self):
+        return self._preco
+
+    @property
+    def categoria(self):
+        return self._categoria
+
+    @property
+    def estoque(self):
+        return self._estoque
 
 
-    # Método polimórfico
+    # Método polimórfico — por padrão retorna o preço base
     def calcularValorFinal(self):
-        return self._preco # genérico
+        return self._preco
     
     def __str__(self):
         return f"Produto: {self._nome} | Preço: R${self._preco} | Categoria: {self._categoria} | Estoque: {self._estoque}"
 
 
 class Notebook(Produto):
-    def __init__(self, nome, preco, estoque, marca):
+    def __init__(self, nome, preco, estoque):
         super().__init__(nome, preco, "Eletrônicos", estoque)
-        self.__marca = marca
         
     def calcularValorFinal(self):
         return super().calcularValorFinal()
-    
-    def __str__(self):
-        return f"{super().__str__()} | Marca: {self.__marca} | Valor Final: {self.calcularValorFinal():.2f}"
+
 
 class Alimento(Produto):
-    def __init__(self, nome, preco, estoque, marca):
+    def __init__(self, nome, preco, estoque):
         super().__init__(nome, preco, "Alimentos", estoque)
-        self.__marca = marca
         
     def calcularValorFinal(self):
         return super().calcularValorFinal()
-    
-    def __str__(self):
-        return f"{super().__str__()} | Marca: {self.__marca} | Valor Final: {self.calcularValorFinal():.2f}"
 
 
 class Livro(Produto):
-    def __init__(self, nome, preco, estoque, autor):
+    def __init__(self, nome, preco, estoque):
         super().__init__(nome, preco, "Livros", estoque)
-        self.__autor = autor
         
     def calcularValorFinal(self):
         return super().calcularValorFinal()
-    
-    def __str__(self):
-        return f"{super().__str__()} | Autor: {self.__autor} | Valor Final: {self.calcularValorFinal():.2f}"
 
 
