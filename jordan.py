@@ -21,6 +21,7 @@ class Produto:
             self.__preco = preco
         else:
             print("Preço invalido")
+            
     def get_categoria(self):
         return self.__categoria
     
@@ -62,7 +63,6 @@ class Alimento(Produto):
     def __str__(self):
         return f"{super().__str__()} | Marca: {self.__marca} | Valor Final: {self.calcularValorFinal():.2f}"
 
-
 class Livro(Produto):
     def __init__(self, nome, preco, estoque, autor):
         super().__init__(nome, preco, "Livros", estoque)
@@ -72,7 +72,6 @@ class Livro(Produto):
     
     def __str__(self):
         return f"{super().__str__()} | Autor: {self.__autor} | Valor Final: {self.calcularValorFinal():.2f}"
-
 
 carrinho = [] 
 lista_produtos = []
