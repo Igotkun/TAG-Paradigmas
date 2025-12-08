@@ -8,7 +8,7 @@ from oo.pedido import Pedido
 from funcional.funcoes_funcionais import aplicar_desconto, gerar_multiplicador
 
 
-class Pagamento(ABC):
+class Pagamento(ABC): #Classe abstrata, os filhos dessa classe devem implementar o método processar_pagamento e ajustar_valor
     def __init__(self, valor_total):
         self.valor_total = valor_total
 
@@ -16,6 +16,7 @@ class Pagamento(ABC):
     def processar_pagamento(self):
         pass
 
+    @abstractmethod
     def ajustar_valor(self):
         return self.valor_total
 
@@ -68,7 +69,7 @@ class PagamentoBoleto(Pagamento):
         return round(multiplicador_taxa(self.valor_total), 2)
 
 
-def processarPagamento(total, carrinho, cliente):
+def processarPagamento(total, carrinho, cliente): #Processa o pagamento utilizando polimorfismo
     if not carrinho:
         print("Carrinho vazio! Não é possível finalizar a compra.")
         return

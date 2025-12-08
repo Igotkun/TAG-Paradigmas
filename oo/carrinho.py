@@ -8,7 +8,7 @@ class Carrinho:
     def __init__(self):
         self.itens = []
 
-    def adicionar(self, produto, quantidade):
+    def adicionar(self, produto, quantidade): #Adiciona a quantidade no carrinho e atualiza o estoque.
         if quantidade <= 0:
             raise ValueError("Quantidade deve ser maior que zero")
 
@@ -24,7 +24,7 @@ class Carrinho:
         self.itens.append(ItemCarrinho(produto, quantidade))
         produto.set_estoque(produto.get_estoque() - quantidade)
 
-    def remover(self, produto, quantidade=None):
+    def remover(self, produto, quantidade=None): #Remove um produto do carrinho
         for i, item in enumerate(self.itens):
             if item.produto.get_nome() == produto.get_nome():
                 if quantidade is None or quantidade >= item.quantidade:
@@ -36,22 +36,19 @@ class Carrinho:
                 return True
         return False
 
-    def calcular_total(self):
+    def calcular_total(self): #Calcula o total usando os métodos da classe Produto
         total = 0.0
         for item in self.itens:
             total += item.quantidade * item.produto.calcularValorFinal()
         return total
 
-    def clear(self):
-        self.itens.clear()
-
     def __len__(self):
         return len(self.itens)
 
-    def __iter__(self):
+    def __iter__(self): #
         return iter(self.itens)
 
-    def mostraCarrinho(self):
+    def mostraCarrinho(self): #mostra os itens do carrinho utilizando a classe produto
         if not self.itens or len(self.itens) == 0:
             print("O carrinho está vazio")
             return
@@ -68,7 +65,7 @@ class Carrinho:
             print(f"[{i}] {nome} | Quantidade: {quantidade}x | R${preco:.2f}")
         print("-" * 40)
 
-    def adicionarProdutoCarrinho(self, lista_produtos):
+    def adicionarProdutoCarrinho(self, lista_produtos): #funçao de inteface para adicionar produtos ao carrinho
         if not lista_produtos:
             print("O catálogo de produtos está vazio.")
             return
@@ -103,7 +100,7 @@ class Carrinho:
             print("Opção de produto ou quantidade inválida")
             input("Aperte Enter para voltar")
 
-    def removerProdutoCarrinho(self):
+    def removerProdutoCarrinho(self): #função de interface para remover produtos do carrinho
         self.mostraCarrinho()
         if not self.itens or len(self.itens) == 0:
             input("Aperte Enter para voltar")
@@ -141,5 +138,5 @@ class Carrinho:
             print("Opção inválida")
             input("Aperte Enter para voltar")
 
-    def calcularTotalCompra(self):
+    def calcularTotalCompra(self): #função de interface para calcular o total da compra
         return self.calcular_total()

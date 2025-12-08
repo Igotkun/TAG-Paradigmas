@@ -7,7 +7,7 @@ carrinho = Carrinho()
 lista_produtos = []
 
 
-def criarCliente():
+def criarCliente(): #Função para criar um novo cliente e salvar em um arquivo JSON
 
     ARQUIVO = "dados_cliente.json"
 
@@ -28,7 +28,7 @@ def criarCliente():
     cel = input("Celular: ")
     endereco = input("Endereço: ")
 
-    novo_cliente_obj = Cliente(nome, cpf, birth, cel, endereco)
+    novo_cliente_obj = Cliente(nome, cpf, birth, cel, endereco) #cria o objeto cliente
 
     novo_cliente = {
         "nome": novo_cliente_obj.get_nome(),
@@ -38,10 +38,10 @@ def criarCliente():
         "endereco" : novo_cliente_obj.get_endereco()
     }
 
-    clientes.append(novo_cliente)
+    clientes.append(novo_cliente) #adiciona o cliente à lista de clientes
 
     with open(ARQUIVO, 'w', encoding='utf-8') as f:
-        json.dump(clientes, f, indent=4, ensure_ascii=False)
+        json.dump(clientes, f, indent=4, ensure_ascii=False) #coloca o cliente no arquivo JSON
 
     print("Cliente salvo com sucesso!")
 
@@ -65,7 +65,7 @@ def lerClientes():
         return []
     
     os.system("cls")
-    print("\n--- LISTA DE CLIENTES ---")
+    print("\n--- LISTA DE CLIENTES ---") #Usa o arquvio JSON para ler e mostrar os clientes
     for i, c in enumerate(clientes, 1):
         print(f"[{i}] {c['nome']} - CPF: {c['cpf']}")
     print("-------------------------")
@@ -73,8 +73,6 @@ def lerClientes():
     
 
 def alterarCliente():
-
-    
     ARQUIVO = "dados_cliente.json"
 
     if not os.path.exists(ARQUIVO):
@@ -113,42 +111,42 @@ def alterarCliente():
     cel = input(f"Celular: [{cliente['cel']}]") or cliente['cel']
     endereco = input(f"Endereço: [{cliente['endereco']}]") or cliente['endereco']
 
-    clienteUpdate = {
+    clienteUpdate = { #utiliza clienteUpdate para atualizar os dados do cliente
         "nome": nome,
         "cpf" : cpf,
         "birth" : birth,
         "cel" : cel,
         "endereco" : endereco
-    }
+    } 
 
     clientes[indice] = clienteUpdate
 
-    with open(ARQUIVO, 'w', encoding='utf-8') as f:
+    with open(ARQUIVO, 'w', encoding='utf-8') as f: #atualiza o arquivo JSON com os novos dados
         json.dump(clientes, f, indent=4, ensure_ascii=False)
 
     print("\nCliente alterado com sucesso!")
 
 
 def selecionar_cliente():
-    """TRECHO OO: Permite seleção de Cliente para compra (relação UML Cliente 0..* Pedido)."""
-    clientes = lerClientes()
+    clientes = lerClientes() #Lê os clientes do arquivo JSON
     if not clientes:
         print("Nenhum cliente disponível.")
         input("Pressione Enter para continuar...")
         return None
     
+    os.system("cls")
     print("\nSelecione um cliente:")
     for i, cliente_dict in enumerate(clientes, 1):
         print(f"[{i}] {cliente_dict['nome']} - CPF: {cliente_dict['cpf']}")
     
     try:
-        idx = int(input("Escolha: ")) - 1
+        idx = int(input("Escolha: ")) - 1 #coloca o cliente selecionado pelo índice
         if 0 <= idx < len(clientes):
             c = clientes[idx]
             cliente = Cliente(c['nome'], c['cpf'], c['birth'], c['cel'], c['endereco'])
             print(f"Cliente {cliente.nome} selecionado com sucesso!")
             input("Pressione Enter para continuar...")
-            return cliente
+            return cliente #retorna o objeto cliente selecionado
     except Exception:
         pass
     

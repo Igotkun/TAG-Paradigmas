@@ -76,8 +76,9 @@ def listarProdutos(lista_produtos):
     for i, produto in enumerate(lista_produtos):
         nome = produto.get_nome()
         preco = produto.get_preco()
+        categoria = produto.get_categoria()
         estoque = produto.get_estoque()
-        print(f"[{i + 1}] {nome} | Preço: R${preco:.2f} | Estoque: {estoque}")
+        print(f"[{i + 1}] {categoria} | {nome} | Preço: R${preco:.2f} | Estoque: {estoque}")
 
     print("-" * 30)
     

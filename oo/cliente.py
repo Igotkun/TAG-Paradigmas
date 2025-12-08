@@ -6,7 +6,7 @@ class Cliente:
         self._cel = cel
         self._endereco = endereco
 
-    @property
+    @property #property foi utilizado para passar os atributos para o JSON
     def nome(self):
         return self._nome
 
@@ -26,6 +26,9 @@ class Cliente:
     def endereco(self):
         return self._endereco
 
+    #getters e setters foram usados para as outras funções
+     
+    #get e set nome
     def get_nome(self):
         return self._nome
 
@@ -34,7 +37,8 @@ class Cliente:
             print("Nome inválido")
         else:
             self._nome = nome
-
+            
+    #get e set cpf
     def get_cpf(self):
         return self._cpf
 
@@ -43,7 +47,8 @@ class Cliente:
             print("CPF inválido")
         else:
             self._cpf = cpf
-            
+    
+    #get e set nascimento
     def get_birth(self):
         return self._birth
 
@@ -53,6 +58,7 @@ class Cliente:
         else:
             self._birth = birth
 
+    #get e set celular
     def get_cel(self):
         return self._cel
 
@@ -62,6 +68,7 @@ class Cliente:
         else:
             self._cel = cel
     
+    #get e set endereco
     def get_endereco(self):
         return self._endereco
     
@@ -71,5 +78,6 @@ class Cliente:
         else:
             self._endereco = endereco
     
+    #string pra printar o cliente
     def __str__(self):
         return f"Nome: {self._nome} | CPF: {self._cpf} | Data de Nascimento: {self._birth} | Celular: {self._cel} | Endereco: {self._endereco}"

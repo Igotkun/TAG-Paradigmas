@@ -1,37 +1,20 @@
 from functools import reduce
 
 def aplicar_desconto(preco, desconto_percent=10):
-    return round(preco * (1 - desconto_percent / 100), 2)
+    return round(preco * (1 - desconto_percent / 100), 2) #aplica um desconto percentual ao preço
 
 
 def processar_precos(lista_precos, func):
-    return list(map(func, lista_precos))
+    return list(map(func, lista_precos)) #usa map para aplicar a função nos elementos da lista
 
 
-def gerar_multiplicador(n):
+def gerar_multiplicador(n): #multiplica um valor por n
     def multiplicador(x):
         return x * n
-    return multiplicador
+    return multiplicador 
 
 
 def soma_recursiva(lista):
     if not lista:
         return 0
     return lista[0] + soma_recursiva(lista[1:])
-
-
-def confirma():
-    while True:
-        print("[1] Confirmar")
-        print("[0] Voltar")
-        print("-" * 40)
-        opcao = int(input("Escolha: "))
-        match opcao:
-            case 1:
-                return 1
-                
-            case 0:
-                return 0
-
-            case _:
-                print("Opção inválida.")

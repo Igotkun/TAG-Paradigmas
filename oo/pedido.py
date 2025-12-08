@@ -19,7 +19,7 @@ class Pedido:
     def _gerar_codigo():
         return random.randint(100000, 999999)
     
-    @property
+    @property #property para colocar os atributos no JSON
     def codigo(self):
         return self._codigo
     

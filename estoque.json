@@ -3,13 +3,25 @@
         "nome": "Notebook",
         "preco": 3500.0,
         "categoria": "Eletrônicos",
-        "estoque": 2
+        "estoque": 4
+    },
+    {
+        "nome": "Fone de Ouvido",
+        "preco": 199.99,
+        "categoria": "Eletrônicos",
+        "estoque": 19
+    },
+    {
+        "nome": "Celular",
+        "preco": 1300.0,
+        "categoria": "Eletrônicos",
+        "estoque": 9
     },
     {
         "nome": "Leite",
         "preco": 6.5,
         "categoria": "Alimentos",
-        "estoque": 42
+        "estoque": 50
     },
     {
         "nome": "Ovos",
@@ -18,15 +30,27 @@
         "estoque": 100
     },
     {
+        "nome": "Arroz",
+        "preco": 20.0,
+        "categoria": "Alimentos",
+        "estoque": 30
+    },
+    {
         "nome": "O Senhor dos Anéis",
         "preco": 59.99,
         "categoria": "Livros",
         "estoque": 15
     },
     {
-        "nome": "Fone de Ouvido",
-        "preco": 199.99,
-        "categoria": "Eletrônicos",
-        "estoque": 20
+        "nome": "Demian",
+        "preco": 49.9,
+        "categoria": "Livros",
+        "estoque": 10
+    },
+    {
+        "nome": "A Revolução dos Bichos",
+        "preco": 39.9,
+        "categoria": "Livros",
+        "estoque": 25
     }
 ]

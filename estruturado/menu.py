@@ -3,7 +3,7 @@ from estruturado.produtos import listarProdutos
 from oo.pagamento import processarPagamento
 import os
 
-def menu_lista(lista_produtos, carrinho):
+def menu_lista(lista_produtos, carrinho): #Adicionar produtos ao carrinho
     
     while True:
         os.system('cls')
@@ -22,14 +22,14 @@ def menu_lista(lista_produtos, carrinho):
 
         match opcao:
             case 1:
-                carrinho.adicionarProdutoCarrinho(lista_produtos)
+                carrinho.adicionarProdutoCarrinho(lista_produtos) #usa a função adicionarProdutoCarrinho da classe Carrinho
             case 0:
                 break
             case _:
                 print("Opção inválida.")
                 input("Pressione Enter para continuar...")
                 
-def menu_carrinho(carrinho, cliente):
+def menu_carrinho(carrinho, cliente): #Remover produtos do carrinho e finalizar compra
     
     while True:
         os.system('cls')
@@ -52,20 +52,20 @@ def menu_carrinho(carrinho, cliente):
 
         match opcao:
             case 1:
-                carrinho.removerProdutoCarrinho()
+                carrinho.removerProdutoCarrinho() #usa a função removerProdutoCarrinho da classe Carrinho
             case 2:
                 if cliente is None:
                     print("Selecione um cliente em 'Meu Perfil' antes de finalizar a compra.")
                     input("Pressione Enter para continuar...")
                 else:
-                    processarPagamento(total, carrinho, cliente)
+                    processarPagamento(total, carrinho, cliente) #usa a função processarPagamento do arquivo pagamento.py
             case 0:
                 break
             case _:
                 print("Opção inválida.")
                 input("Pressione Enter para continuar...")
 
-def menu_perfil(cliente_atual):
+def menu_perfil(cliente_atual): #Trocar cliente, criar novo cliente, alterar dados do cliente
 
     while True:
         os.system('cls')
@@ -94,15 +94,15 @@ def menu_perfil(cliente_atual):
 
         match opcao:
             case 1:
-                return selecionar_cliente()
+                return selecionar_cliente() #seleciona o cliente e retorna o objeto cliente
             case 2:
-                lerClientes()
+                lerClientes() #Lê e mostra os clientes do arquivo JSON
                 input("Pressione Enter para continuar...")
             case 3 | 4:
                 if opcao == 3:
-                    criarCliente()
+                    criarCliente() #Cria um novo cliente e salva no arquivo JSON
                 else:
-                    alterarCliente()
+                    alterarCliente() #Altera os dados do cliente no arquivo JSON
             case 0:
                 break
             case _:
@@ -111,18 +111,18 @@ def menu_perfil(cliente_atual):
     
     return cliente_atual
 
-
-def iniciarLoja(lista_produtos, carrinho):
+def iniciarLoja(lista_produtos, carrinho): #Função inicial do programa que dá acesso as outras funções
 
     cliente_atual = None
     
     while True:
         os.system('cls')
-        print("\n========== LOJA MULTI-PARADIGMA ==========")
+        print("\n========== LOJA MULTI-PARADIGMA ==========") #Menu principal
         if cliente_atual:
             print(f"✓ Cliente: {cliente_atual.nome}")
         else:
             print("⊘ Nenhum cliente selecionado")
+            
         print("[1] Ver Catálogo")
         print("[2] Meu Carrinho")
         print("[3] Meu Perfil") 
@@ -137,7 +137,7 @@ def iniciarLoja(lista_produtos, carrinho):
             input("Pressione Enter para continuar...")
             continue
 
-        match opcao:
+        match opcao: #Switch para as opções do menu (match nesse caso)
             case 1:
                 menu_lista(lista_produtos, carrinho)
             case 2:

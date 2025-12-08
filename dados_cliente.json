@@ -14,10 +14,24 @@
         "endereco": "Rua Quatro, 92, Rio de Janeiro"
     },
     {
-        "nome": "Pedro",
+        "nome": "Jordan",
         "cpf": "987.654.321-00",
         "birth": "5/5/2001",
         "cel": "21 91234-5678",
         "endereco": "Avenida Central, 456, Rio de Janeiro"
+    },
+    {
+        "nome": "Igor",
+        "cpf": "321.654.987-11",
+        "birth": "13/5/2004",
+        "cel": "21 99876-5432",
+        "endereco": "Rua B, 45, Rio de Janeiro"
+    },
+    {
+        "nome": "Kelvin",
+        "cpf": "456.789.123-22",
+        "birth": "23/8/2003",
+        "cel": "21 98765-4321",
+        "endereco": "Travessa das Acácias, 78, Rio de Janeiro"
     }
 ]
