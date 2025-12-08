@@ -140,3 +140,7 @@ class Carrinho:
 
     def calcularTotalCompra(self): #função de interface para calcular o total da compra
         return self.calcular_total()
+    
+    def clear(self):
+        """Limpa os itens do carrinho (compatibilidade com lista: clear())."""
+        self.itens.clear()
