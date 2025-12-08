@@ -1,10 +1,10 @@
 class Cliente:
-    def __init__(self, nome, cpf, birth, cel, cidade):
+    def __init__(self, nome, cpf, birth, cel, endereco):
         self._nome = nome
         self._cpf = cpf
         self._birth = birth
         self._cel = cel
-        self._cidade = cidade
+        self._endereco = endereco
 
     def get_nome(self):
         return self._nome
@@ -42,14 +42,14 @@ class Cliente:
         else:
             self._cel = cel
     
-    def get_cidade(self):
-        return self._cidade 
+    def get_endereco(self):
+        return self._endereco
     
-    def set_cidade(self, cidade):
-        if not cidade:
-            print("Cidade inválida")
+    def set_endereco(self, endereco):
+        if not endereco:
+            print("Endereço inválida")
         else:
-            self._cidade = cidade
+            self._endereco = endereco
     
     def __str__(self):
-        return f"Nome: {self._nome} | CPF: {self._cpf} | Data de Nascimento: {self._birth} | Celular: {self._cel} | Cidade: {self._cidade}"
+        return f"Nome: {self._nome} | CPF: {self._cpf} | Data de Nascimento: {self._birth} | Celular: {self._cel} | Endereco: {self._endereco}"

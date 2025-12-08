@@ -44,7 +44,7 @@ class Produto:
         return self._preco # genérico
     
     def __str__(self):
-        return f"Produto: {self._nome} | Preço: R${self._preco} | Categoria: {self._categoria} | Estoque: {self.estoque}"
+        return f"Produto: {self._nome} | Preço: R${self._preco} | Categoria: {self._categoria} | Estoque: {self._estoque}"
 
 
 class Notebook(Produto):

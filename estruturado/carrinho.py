@@ -1,6 +1,5 @@
 # Carrinho estruturado (simples, baseado em lista)
 from funcional.funcoes_funcionais import confirma
-from estruturado.produtos import listarProdutos
 from dados import carrinho
 from functools import reduce
 import os
