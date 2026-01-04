@@ -134,9 +134,9 @@ python main.py
 
 # 👨‍💻 Autores
 
-Jordan Aguiar
+[Jordan Aguiar](https://github.com/JordanAguiar)
 
-Igor Lyra
+[Igor Lyra](https://github.com/Igotkun)
 
 Kelvyn Dantas
 
